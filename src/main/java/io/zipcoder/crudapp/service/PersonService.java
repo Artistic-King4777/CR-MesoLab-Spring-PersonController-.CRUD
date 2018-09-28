@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import io.zipcoder.crudapp.exception.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -18,6 +19,11 @@ public class PersonService {
 
     @Autowired
     private IPersonRepository personRepository;
+
+
+    public Person verifyPerson(Long id) throws ResourceNotFoundException{
+        return personRepository.findOne(id);
+    }
 
 
     // WORK Yes/No
@@ -40,8 +46,6 @@ public class PersonService {
     public Person getPerson(Long id) {
          return personRepository.findOne(id);
     }
-
-
 
     public Person updatePerson(Person person) {
         return personRepository.save(person);
